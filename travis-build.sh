@@ -8,4 +8,4 @@ sudo service docker stop
 curl -fsSL https://get.docker.com/ | sudo sh
 docker version
 
-docker build -t ffaerber/appsample --build-arg ARCH=$ARCH .
+docker build -t ffaerber/appsample --build-arg ARCH=$ARCH . --no-cache
