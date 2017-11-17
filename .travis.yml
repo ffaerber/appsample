@@ -9,7 +9,7 @@ env:
   matrix:
     - ARCH=amd64
     - ARCH=arm32v7
-
+    - ARCH=arm64v8
 
 before_script: chmod +x ./travis-build.sh
 
