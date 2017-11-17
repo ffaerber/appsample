@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+ - docker
+
+env:
+  matrix:
+    - ARCH=amd64
+    - ARCH=arm32v7
+
+script:
+  - ./travis-build.sh
