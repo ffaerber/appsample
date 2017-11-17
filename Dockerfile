@@ -1,4 +1,4 @@
-ARG ARCH=arm32v7
+ARG ARCH=amd64
 FROM ${ARCH}/debian:stretch-slim
 
 RUN apt-get update && \
