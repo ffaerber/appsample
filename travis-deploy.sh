@@ -20,8 +20,8 @@ if [ "$TRAVIS_TAG" ]; then
   docker build -t ffaerber/appsample:build --build-arg ARCH=$ARCH . --no-cache
   docker run ffaerber/appsample:build uname -a
 
-  docker tag ffaerber/appsample:build ffaerber/appsample-$ARCH:$TRAVIS_TAG
-  docker tag ffaerber/appsample:build ffaerber/appsample-$ARCH:latest
-  docker push ffaerber/appsample-$ARCH:$TRAVIS_TAG
-  docker push ffaerber/appsample-$ARCH:latest
+  docker tag ffaerber/appsample:build ffaerber/appsample:$TRAVIS_TAG-$ARCH
+  docker tag ffaerber/appsample:build ffaerber/appsample:latest-$ARCH
+  docker push ffaerber/appsample:$TRAVIS_TAG-$ARCH
+  docker push ffaerber/appsample:latest-$ARCH
 fi
