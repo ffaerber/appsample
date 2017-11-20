@@ -9,5 +9,5 @@ env:
     - ARCH=arm32v7
 
 script:
-  - chmod +x ./travis-build.sh
-  - ./travis-build.sh
+  - chmod +x ./travis-deploy.sh
+  - ./travis-deploy.sh
