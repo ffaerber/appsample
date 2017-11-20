@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-if [ "$TRAVIS_BRANCH" == "master" && $TRAVIS_TAG ]; then
+if [ "$TRAVIS_TAG" ]; then
   docker version
   uname -a
   echo "Updating Docker engine to latest version"
