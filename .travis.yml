@@ -7,7 +7,6 @@ env:
   matrix:
     - ARCH=amd64
     - ARCH=arm32v7
-    - ARCH=arm64v8
 
 script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
