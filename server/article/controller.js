@@ -1,7 +1,11 @@
+require('dotenv').config()
+
 const Bluebird = require('bluebird')
 const Redis = Bluebird.promisifyAll(require("redis"));
 
-const redis = Redis.createClient('redis://redis');
+console.log(process.env.REDIS_HOST);
+
+const redis = Redis.createClient(process.env.REDIS_HOST);
 
 const create = async ctx => {
   const { body } = ctx.request;
