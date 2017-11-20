@@ -1,6 +1,6 @@
 ARG ARCH=amd64
 FROM ${ARCH}/debian:stretch-slim
-RUN if [ "$ARCH" != "amd64" ] && [ "$ARCH" != "" ]; then cp tmp/qemu-arm-static /usr/bin/qemu-arm-static; fi
+RUN cp tmp/qemu-arm-static /usr/bin/qemu-arm-static
 
 RUN apt-get update && \
     apt-get install -y \
