@@ -9,7 +9,9 @@ app
   .use(article.routes())
   .use(metrics.routes())
 
-const server = app.listen(3000)
+const server = app.listen(3000).on("error", err => {
+  console.error(err);
+});
 
 
 module.exports = server;
