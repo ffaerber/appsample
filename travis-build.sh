@@ -22,4 +22,4 @@ if [ -d tmp ]; then
   rm -rf tmp
 fi
 
-docker build -t appsample --build-arg ARCH=$ARCH .
+docker build -t ffaerber/appsample:build --build-arg ARCH=$ARCH .
