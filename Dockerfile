@@ -1,6 +1,8 @@
 ARG ARCH=amd64
 FROM ${ARCH}/debian:stretch-slim
 
+COPY qemu-arm-static /usr/bin/qemu-arm-static
+
 RUN apt-get update && \
     apt-get install -y \
     vim \
