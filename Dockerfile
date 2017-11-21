@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-FROM buildpack-deps:jessie
+FROM buildpack-deps:stretch
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
