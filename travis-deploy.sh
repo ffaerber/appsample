@@ -1,27 +1,41 @@
 #!/bin/bash
 set -e
-if [ "$TRAVIS_TAG" ]; then
-  docker version
-  uname -a
-  echo "Updating Docker engine to latest version"
-  sudo service docker stop
-  curl -fsSL https://get.docker.com/ | sudo sh
-  docker version
 
-  docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+image="ffaerber/appsample"
 
-  docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  mkdir tmp
-  pushd tmp &&
-  curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-arm-static.tar.gz &&
-  tar xzf qemu-arm-static.tar.gz &&
-  popd
+docker tag appsample "$image:linux-$ARCH-$TRAVIS_TAG"
+docker push "$image:linux-$ARCH-$TRAVIS_TAG"
 
-  docker build -t ffaerber/appsample:build --build-arg ARCH=$ARCH . --no-cache
-  docker run ffaerber/appsample:build uname -a
+if [ "$ARCH" == "amd64" ]; then
+  set +e
+  echo "Waiting for other images $image:linux-arm-$TRAVIS_TAG"
+  until docker run --rm stefanscherer/winspector "$image:linux-arm-$TRAVIS_TAG"
+  do
+    sleep 15
+    echo "Try again"
+  done
+  until docker run --rm stefanscherer/winspector "$image:linux-arm64-$TRAVIS_TAG"
+  do
+    sleep 15
+    echo "Try again"
+  done
+  set -e
 
-  docker tag ffaerber/appsample:build ffaerber/appsample:$TRAVIS_TAG-$ARCH
-  docker tag ffaerber/appsample:build ffaerber/appsample:latest-$ARCH
-  docker push ffaerber/appsample:$TRAVIS_TAG-$ARCH
-  docker push ffaerber/appsample:latest-$ARCH
+  echo "Downloading manifest-tool"
+  wget https://github.com/estesp/manifest-tool/releases/download/v0.5.0/manifest-tool-linux-amd64
+  mv manifest-tool-linux-amd64 manifest-tool
+  chmod +x manifest-tool
+  ./manifest-tool
+
+  echo "Pushing manifest $image:$TRAVIS_TAG"
+  ./manifest-tool push from-args \
+    --platforms linux/amd64,linux/arm \
+    --template "$image:OS-ARCH-$TRAVIS_TAG" \
+    --target "$image:$TRAVIS_TAG"
+
+  echo "Pushing manifest $image:latest"
+  ./manifest-tool push from-args \
+    --platforms linux/amd64,linux/arm \
+    --template "$image:OS-ARCH-$TRAVIS_TAG" \
+    --target "$image:latest"
 fi
