@@ -9,7 +9,6 @@ env:
     - ARCH=arm32v7
 
 script:
-  - chmod +x ./travis-build.sh
   - ./travis-build.sh
   - >
     if [ -n "$TRAVIS_TAG" ]; then
