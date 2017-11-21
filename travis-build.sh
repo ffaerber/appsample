@@ -3,7 +3,8 @@ set -e
 
 echo "Updating Docker engine"
 sudo service docker stop
-curl -fsSL https://get.docker.com/ | sudo sh
+sudo apt-cache madison docker-ce
+sudo apt-get install docker-ce=17.05.0~ce-0~debian-jessie
 docker version
 
 if [ "$ARCH" != "amd64" ]; then
@@ -28,3 +29,4 @@ if [ -d tmp ]; then
 fi
 
 docker build -t ffaerber/appsample:build --build-arg ARCH=$ARCH .
+docker run ffaerber/appsample:build uname -a

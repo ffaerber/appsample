@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-FROM buildpack-deps:stretch
+FROM ${ARCH}/debian:stretch-slim
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
