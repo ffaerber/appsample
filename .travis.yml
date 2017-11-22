@@ -5,7 +5,7 @@ services:
 
 env:
   matrix:
-    - ARCH=arm BASE_IMAGE=resin/rpi-raspbian:stretch
+    - ARCH=arm BASE_IMAGE=hypriot/rpi-node:6.10.0
     # - ARCH=amd64 BASE_IMAGE=amd64/debian:stretch-slim
 
 
