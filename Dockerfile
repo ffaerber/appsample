@@ -1,8 +1,9 @@
-ARG QEMU=qemu-arm-static
+ARG QEMU
 ARG BASE_IMAGE=amd64/debian:stretch-slim
 FROM ${BASE_IMAGE}
 
-COPY ${QEMU} /usr/bin/${QEMU}
+RUN curl https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/${QEMU}.tar.gz \
+  | tar -xjC /usr/bin/${QEMU}
 
 RUN apt-get update && \
     apt-get install -y \
