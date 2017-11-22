@@ -6,7 +6,7 @@ services:
 env:
   matrix:
     - ARCH=arm BASE_IMAGE=arm32v7/debian:jessie-slim
-    # - ARCH=amd64 BASE_IMAGE=amd64/debian:jessie-slim
+    - ARCH=arm64 BASE_IMAGE=arm64v8/debian:jessie-slim
 
 
 script:
