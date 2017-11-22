@@ -1,3 +1,4 @@
+ARG BASE_IMAGE=amd64/debian:stretch-slim
 FROM ${BASE_IMAGE}
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
