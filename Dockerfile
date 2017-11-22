@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-FROM ${ARCH}/debian:stretch-slim
+FROM resin/rpi-raspbian:stretch
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
