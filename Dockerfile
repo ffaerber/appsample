@@ -1,4 +1,4 @@
-FROM ${IMAGE}
+FROM ${BASE_IMAGE}
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
