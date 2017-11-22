@@ -3,7 +3,7 @@ set -e
 
 image="ffaerber/appsample"
 
-docker tag ffaerber/appsample:build "$image:linux-$ARCH-$TRAVIS_TAG"
+docker tag appsample "$image:linux-$ARCH-$TRAVIS_TAG"
 docker push "$image:linux-$ARCH-$TRAVIS_TAG"
 
 if [ "$ARCH" == "amd64" ]; then
@@ -29,13 +29,13 @@ if [ "$ARCH" == "amd64" ]; then
 
   echo "Pushing manifest $image:$TRAVIS_TAG"
   ./manifest-tool push from-args \
-    --platforms linux/amd64,linux/arm \
+    --platforms linux/amd64,linux/arm,linux/arm64 \
     --template "$image:OS-ARCH-$TRAVIS_TAG" \
     --target "$image:$TRAVIS_TAG"
 
   echo "Pushing manifest $image:latest"
   ./manifest-tool push from-args \
-    --platforms linux/amd64,linux/arm \
+    --platforms linux/amd64,linux/arm,linux/arm64 \
     --template "$image:OS-ARCH-$TRAVIS_TAG" \
     --target "$image:latest"
 fi
