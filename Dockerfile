@@ -1,15 +1,17 @@
 ARG QEMU
 ARG BASE_IMAGE=amd64/debian:stretch-slim
-FROM ${BASE_IMAGE}
+ARG ARCH=amd64
 
-RUN curl https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/${QEMU}.tar.gz \
-  | tar -xjC /usr/bin/${QEMU}
+FROM ${BASE_IMAGE}
 
 RUN apt-get update && \
     apt-get install -y \
     vim \
     gnupg \
     curl
+
+RUN curl https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/${QEMU}.tar.gz \
+  | tar -xjC /usr/bin/${QEMU}
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | sh
 RUN apt-get install -y nodejs
