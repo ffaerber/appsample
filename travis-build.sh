@@ -20,7 +20,8 @@ if [ "$ARCH" != "amd64" ]; then
 fi
 
 if [ "$ARCH" == "amd64" ]; then
-  touch fake-qemu-amd64-static
+  # this is a hack to fake a qemu-amd64-static
+  touch "$QEMU"
 fi
 
 
