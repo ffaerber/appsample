@@ -2,7 +2,7 @@ ARG QEMU
 ARG BASE_IMAGE=amd64/debian:stretch-slim
 FROM ${BASE_IMAGE}
 
-ADD https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/${QEMU}.tar.gz /usr/bin/${QEMU}
+ADD ${QEMU} /usr/bin/${QEMU}
 
 RUN apt-get update && \
     apt-get install -y \
