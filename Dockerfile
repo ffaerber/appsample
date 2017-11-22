@@ -1,7 +1,8 @@
+ARG QEMU=qemu-arm-static
 ARG BASE_IMAGE=amd64/debian:stretch-slim
 FROM ${BASE_IMAGE}
 
-COPY qemu-arm-static /usr/bin/qemu-arm-static
+COPY ${QEMU} /usr/bin/${QEMU}
 
 RUN apt-get update && \
     apt-get install -y \
