@@ -3,15 +3,6 @@ FROM ${BASE_IMAGE}
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
-RUN apt-get update && \
-    apt-get install -y \
-    vim \
-    gnupg \
-    curl
-
-RUN curl -sL https://deb.nodesource.com/setup_9.x | sh
-RUN apt-get install -y nodejs
-
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
