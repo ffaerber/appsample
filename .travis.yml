@@ -5,8 +5,8 @@ services:
 
 env:
   matrix:
-    - ARCH=arm   BASE_IMAGE=arm32v7/debian:stretch-slim
-    - ARCH=amd64 BASE_IMAGE=amd64/debian:stretch-slim
+    - BASE_IMAGE=arm32v7/debian:stretch-slim
+    - BASE_IMAGE=amd64/debian:stretch-slim
 
 
 script:
