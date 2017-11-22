@@ -5,8 +5,9 @@ services:
 
 env:
   matrix:
-    # - ARCH=amd64
-    - ARCH=arm32v7
+    - ARCH=arm IMAGE=hypriot/rpi-node:6.10.0
+    # - ARCH=amd64 IMAGE=amd64/debian:stretch-slim
+
 
 script:
   - ./travis-build.sh

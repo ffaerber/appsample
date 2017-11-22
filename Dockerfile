@@ -1,5 +1,4 @@
-ARG ARCH=amd64
-FROM resin/rpi-raspbian:stretch
+FROM ${IMAGE}
 
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 

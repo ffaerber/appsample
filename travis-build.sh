@@ -13,12 +13,12 @@ if [ "$ARCH" != "amd64" ]; then
 
   docker create --name qemu-register hypriot/qemu-register
 
-  if [ "$ARCH" == "arm64v8" ]; then
-    docker cp qemu-register:qemu-aarch64 qemu-aarch64-static
+  if [ "$ARCH" == "arm" ]; then
+    docker cp qemu-register:qemu-arm qemu-arm-static
   fi
 
-  if [ "$ARCH" == "arm32v7" ]; then
-    docker cp qemu-register:qemu-arm qemu-arm-static
+  if [ "$ARCH" == "arm64" ]; then
+    docker cp qemu-register:qemu-aarch64 qemu-aarch64-static
   fi
 
 fi
