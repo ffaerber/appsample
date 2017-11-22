@@ -28,5 +28,5 @@ if [ -d tmp ]; then
   rm -rf tmp
 fi
 
-docker build -t ffaerber/appsample:build --build-arg ARCH=$ARCH .
+docker build -t ffaerber/appsample:build --build-arg BASE_IMAGE=$BASE_IMAGE .
 docker run ffaerber/appsample:build uname -a
