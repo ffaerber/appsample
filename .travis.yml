@@ -5,9 +5,9 @@ services:
 
 env:
   matrix:
-    - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
     - ARCH=arm   QEMU=qemu-arm-static     BASE_IMAGE=arm32v7/debian:jessie-slim
     - ARCH=arm64 QEMU=qemu-aarch64-static BASE_IMAGE=arm64v8/debian:jessie-slim
+    - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
 
 script:
   - ./travis-build.sh
