@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "Updating Docker engine"
-sudo service docker stop
-sudo apt-cache madison docker-ce
-sudo apt-get install docker-ce=17.11.0~ce-0~ubuntu
 docker version
 
 if [ "$ARCH" != "amd64" ]; then
