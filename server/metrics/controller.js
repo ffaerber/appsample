@@ -10,6 +10,6 @@ const show = async ctx => {
   ctx.set('Content-Type', contectType)
   const metrics = await Prometheus.register.metrics()
   ctx.body = metrics
-};
+}
 
-module.exports = { show };
+module.exports = { show }

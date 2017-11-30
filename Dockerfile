@@ -18,6 +18,9 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
+
+RUN npm install standard --global
+RUN npm install nodemon --global
 RUN npm install
 
 # Bundle app source
