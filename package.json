@@ -1,10 +1,10 @@
 {
-  "name": "simple-api",
+  "name": "appsample",
   "version": "1.0.0",
-  "description": "simple api test",
+  "description": "example application",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon -L --exec 'standard --fix && jest --forceExit'"
+    "test": "node_modules/.bin/nodemon -L --exec 'node_modules/.bin/standard --fix && jest --forceExit'"
   },
   "author": "Felix Faerber",
   "license": "MIT",
@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "jest": "21.2.1",
+    "nodemon": "1.12.0",
+    "standard": "10.0.3",
     "supertest": "3.0.0"
   }
 }

@@ -30,5 +30,10 @@ if [ -d tmp ]; then
   rm -rf tmp
 fi
 
-docker build -t appsample --build-arg BASE_IMAGE=$BASE_IMAGE --build-arg QEMU=$QEMU .
+docker build -t appsample \
+  --build-arg BASE_IMAGE=$BASE_IMAGE \
+  --build-arg QEMU=$QEMU \
+  --build-arg NPM_OPTIONS=--production \
+  .
+
 docker run appsample uname -a

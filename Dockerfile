@@ -1,4 +1,5 @@
 ARG QEMU
+ARG NPM_OPTIONS
 ARG BASE_IMAGE=amd64/debian:stretch-slim
 FROM ${BASE_IMAGE}
 
@@ -19,9 +20,7 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package.json /usr/src/app/
 
-RUN npm install standard --global
-RUN npm install nodemon --global
-RUN npm install
+RUN npm install ${NPM_OPTIONS}
 
 # Bundle app source
 COPY . /usr/src/app
