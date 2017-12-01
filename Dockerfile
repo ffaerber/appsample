@@ -21,6 +21,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 
 RUN npm install ${NPM_OPTIONS}
+RUN npm dedupe
 
 # Bundle app source
 COPY . /usr/src/app
