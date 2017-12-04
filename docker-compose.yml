@@ -7,9 +7,10 @@ volumes:
 
 services:
 
-  # app:
-  #   build:
-  #     context: .
+  # dev-app:
+  #   image: ffaerber/appsample
+  #   # build:
+  #   #   context: .
   #   ports:
   #     - "3000:3000"
   #   environment:
@@ -20,9 +21,9 @@ services:
   test-app:
     build:
       context: .
+    command: npm test
     environment:
       - REDIS_HOST=redis://redis-db
-    command: npm test
     volumes:
       - node_modules:/usr/src/app/node_modules
       - ./:/usr/src/app

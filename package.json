@@ -1,10 +1,12 @@
 {
   "name": "appsample",
-  "version": "1.0.0",
   "description": "example application",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "node_modules/.bin/nodemon -L --exec 'node_modules/.bin/standard --fix && jest --forceExit'"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "Felix Faerber",
   "license": "MIT",

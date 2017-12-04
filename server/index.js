@@ -3,9 +3,12 @@ const app = new Koa()
 const article = require('./article/route')
 const metrics = require('./metrics/route')
 
+const bodyparser = require('koa-bodyparser')
+const prometheus = require('../middlewares/prometheus')
+
 app
-  .use(require('../middlewares/prometheus')())
-  .use(require('koa-bodyparser')())
+  .use(prometheus())
+  .use(bodyparser())
   .use(article.routes())
   .use(metrics.routes())
 
