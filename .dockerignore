@@ -1,0 +1,8 @@
+.travis.yml
+travis-build.sh
+travis-deploy.sh
+
+Dockerfile
+Makefile
+.git
+tests
