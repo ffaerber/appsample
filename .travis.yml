@@ -10,6 +10,7 @@ env:
     - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
 
 script:
+  - ./travis-test.sh
   - ./travis-build.sh
   - >
     if [ -n "$TRAVIS_TAG" ]; then
