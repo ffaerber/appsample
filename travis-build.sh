@@ -15,8 +15,7 @@ if [ "$ARCH" != "amd64" ]; then
 fi
 
 if [ "$ARCH" == "amd64" ]; then
-  # this is a hack to fake a qemu-amd64-static
-  touch "$QEMU"
+  touch "$QEMU"  # HACK to fake a qemu-amd64-static
 fi
 
 
@@ -31,7 +30,7 @@ docker build -t appsample \
   --build-arg NPM_OPTIONS=--production \
   .
 
-docker build -t appsample-test \
+docker-compose build -t appsample-test \
   --build-arg BASE_IMAGE=$BASE_IMAGE \
   --build-arg QEMU=$QEMU \
   .
