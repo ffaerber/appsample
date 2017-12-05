@@ -16,7 +16,7 @@ describe('reading', () => {
   test('should get a article', async () => {
     const res = await supertest(server).get(`${basePath}/123456`)
     expect(res.status).toEqual(200)
-    expect(res.body.msg).toEqual("The test article's body")
+    expect(res.body.msg).toEqual("The test article's bodys")
   })
 
   test('should update a article', async () => {
