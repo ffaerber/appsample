@@ -24,15 +24,15 @@ if [ -d tmp ]; then
   rm -rf tmp
 fi
 
-docker build -t appsample \
-  --build-arg BASE_IMAGE=$BASE_IMAGE \
-  --build-arg QEMU=$QEMU \
-  --build-arg NPM_OPTIONS=--production \
-  .
+if [ -n "$TRAVIS_TAG" ]; then
+  docker build -t appsample \
+    --build-arg BASE_IMAGE=$BASE_IMAGE \
+    --build-arg QEMU=$QEMU \
+    --build-arg NPM_OPTIONS=--production \
+    .
+fi
 
 docker-compose build \
   --build-arg BASE_IMAGE=$BASE_IMAGE \
   --build-arg QEMU=$QEMU \
   test-app
-
-docker run appsample uname -a
