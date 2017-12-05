@@ -3,6 +3,13 @@ sudo: required
 services:
  - docker
 
+env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
+  matrix:
+    - ARCH=arm   QEMU=qemu-arm-static     BASE_IMAGE=arm32v7/debian:jessie-slim
+    - ARCH=arm64 QEMU=qemu-aarch64-static BASE_IMAGE=arm64v8/debian:jessie-slim
+    - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
+
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -13,13 +20,6 @@ before_install:
   - sudo apt-cache madison docker-ce
   - sudo apt-get install docker-ce=17.11.0~ce-0~ubuntu
   - docker version
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
-  matrix:
-    - ARCH=arm   QEMU=qemu-arm-static     BASE_IMAGE=arm32v7/debian:jessie-slim
-    - ARCH=arm64 QEMU=qemu-aarch64-static BASE_IMAGE=arm64v8/debian:jessie-slim
-    - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
 
 script:
   - ./travis-test.sh
