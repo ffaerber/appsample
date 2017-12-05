@@ -32,6 +32,7 @@ docker build -t appsample \
 
 docker-compose build \
   --build-arg BASE_IMAGE=$BASE_IMAGE \
-  --build-arg QEMU=$QEMU
+  --build-arg QEMU=$QEMU \
+  test-app
 
 docker run appsample uname -a
