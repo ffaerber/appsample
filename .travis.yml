@@ -21,10 +21,10 @@ before_install:
   - docker version
 
 script:
+  - ./travis-build.sh
   - ./travis-test.sh
   - >
     if [ -n "$TRAVIS_TAG" ]; then
       travis_retry timeout 5m docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-      ./travis-build.sh
       ./travis-deploy.sh
     fi

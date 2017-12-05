@@ -31,4 +31,9 @@ docker build -t appsample \
   --build-arg NPM_OPTIONS=--production \
   .
 
+docker build -t appsample-test \
+  --build-arg BASE_IMAGE=$BASE_IMAGE \
+  --build-arg QEMU=$QEMU \
+  .
+
 docker run appsample uname -a
