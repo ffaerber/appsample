@@ -3,7 +3,19 @@ sudo: required
 services:
  - docker
 
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose --version
+  - sudo service docker stop
+  - sudo apt-cache madison docker-ce
+  - sudo apt-get install docker-ce=17.11.0~ce-0~ubuntu
+  - docker version
+
 env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
   matrix:
     - ARCH=arm   QEMU=qemu-arm-static     BASE_IMAGE=arm32v7/debian:jessie-slim
     - ARCH=arm64 QEMU=qemu-aarch64-static BASE_IMAGE=arm64v8/debian:jessie-slim
