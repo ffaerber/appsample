@@ -23,10 +23,10 @@ services:
       context: .
     command: npm test
     environment:
-      - REDIS_HOST=redis://redis-db
+      MONGO_HOST: mongodb://mongo-db/test
     volumes:
       - node_modules:/usr/src/app/node_modules
       - ./:/usr/src/app
 
-  redis-db:
-    image: redis
+  mongo-db:
+    image: mongo

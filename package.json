@@ -17,7 +17,7 @@
     "koa-bodyparser": "4.2.0",
     "koa-jwt": "3.2.2",
     "koa-router": "7.2.1",
-    "redis": "2.8.0",
+    "mongoose": "4.13.6",
     "prom-client": "10.2.2"
   },
   "devDependencies": {

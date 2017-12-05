@@ -1,21 +1,31 @@
 require('dotenv').config()
 
-const Bluebird = require('bluebird')
-const Redis = Bluebird.promisifyAll(require('redis'))
+const mongoose = require('../../libs/mongoose')
 
-const redis = Redis.createClient(process.env.REDIS_HOST)
+const Article = mongoose.model('Article', { _id: Number, title: String, msg: String })
 
 const create = async ctx => {
-  const { body } = ctx.request
-  const res = await redis.setAsync(body.title, body.body)
-  ctx.body = { res }
+  const doc = await Article.create(ctx.request.body)
+  ctx.body = doc
   ctx.status = 201
 }
 
 const show = async ctx => {
   const { id } = ctx.params
-  const res = await redis.getAsync(id)
-  ctx.body = { res }
+  const doc = await Article.findOne({_id: id})
+  ctx.body = doc
 }
 
-module.exports = { create, show }
+const update = async ctx => {
+  const { id } = ctx.params
+  const doc = await Article.findOneAndUpdate({_id: id}, ctx.request.body, {new: true})
+  ctx.body = doc
+}
+
+const remove = async ctx => {
+  const { id } = ctx.params
+  const doc = await Article.remove({_id: id})
+  ctx.body = doc
+}
+
+module.exports = { create, show, update, remove }
