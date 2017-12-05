@@ -1,3 +1,5 @@
+[ ![appsample](https://travis-ci.org/ffaerber/appsample.svg?branch=master)](https://travis-ci.org/ffaerber/appsample)
+
 # appsample
 this is a koa.js application for testing modern node based microservices.
 
