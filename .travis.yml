@@ -5,8 +5,6 @@ services:
 
 env:
   matrix:
-    - ARCH=arm   QEMU=qemu-arm-static     BASE_IMAGE=arm32v7/debian:jessie-slim
-    - ARCH=arm64 QEMU=qemu-aarch64-static BASE_IMAGE=arm64v8/debian:jessie-slim
     - ARCH=amd64 QEMU=qemu-fake-static    BASE_IMAGE=amd64/debian:jessie-slim
 
 before_install:
@@ -27,4 +25,5 @@ script:
     if [ -n "$TRAVIS_TAG" ]; then
       travis_retry timeout 5m docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
       ./travis-deploy.sh
+      ./travis-swarm.sh
     fi
