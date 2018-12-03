@@ -1,17 +1,18 @@
 ARG QEMU
 ARG NPM_OPTIONS
-ARG BASE_IMAGE=amd64/debian:stretch-slim
+ARG BASE_IMAGE=amd64/debian:9.5-slim
 FROM ${BASE_IMAGE}
 
 ADD ${QEMU} /usr/bin/${QEMU}
 
 RUN apt-get update && \
-    apt-get install -y \
-    vim \
-    gnupg \
-    curl
+  apt-get install -y \
+  vim \
+  gnupg \
+  iputils-ping \
+  curl
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | sh
+RUN curl -sL https://deb.nodesource.com/setup_11.x | sh
 RUN apt-get install -y nodejs
 
 RUN mkdir -p /usr/src/app

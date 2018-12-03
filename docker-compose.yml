@@ -1,33 +1,30 @@
-version: '3.3'
+version: "3.3"
 
 volumes:
   node_modules:
     driver: local
 
-
 services:
-
   # dev-app:
-  #   image: ffaerber/appsample
-  #   # build:
-  #   #   context: .
+  #   # image: ffaerber/appsample
+  #   build:
+  #     context: .
   #   ports:
   #     - "3000:3000"
   #   environment:
-  #     - REDIS_HOST=redis://redis-db
+  #     REDIS_HOST: redis://redis-db
   #   volumes:
   #     - node_modules:/usr/src/app/node_modules
-
 
   test-app:
     build:
       context: .
     command: npm test
     environment:
-      MONGO_HOST: mongodb://mongo-db/test
+      REDIS_HOST: redis://redis-db
     volumes:
       - node_modules:/usr/src/app/node_modules
       - ./:/usr/src/app
 
-  mongo-db:
-    image: mongo
+  redis-db:
+    image: redis

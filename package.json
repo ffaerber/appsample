@@ -1,9 +1,9 @@
 {
   "name": "appsample",
-  "description": "example application",
+  "description": "koa example application",
   "main": "server/index.js",
   "scripts": {
-    "test": "node_modules/.bin/nodemon -L --exec 'node_modules/.bin/standard --fix && jest --forceExit'"
+    "test": "node_modules/.bin/nodemon -L --exec 'jest --forceExit'"
   },
   "jest": {
     "testEnvironment": "node"
@@ -11,19 +11,15 @@
   "author": "Felix Faerber",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "3.5.1",
-    "dotenv": "4.0.0",
-    "koa": "2.3.0",
-    "koa-bodyparser": "4.2.0",
-    "koa-jwt": "3.2.2",
-    "koa-router": "7.2.1",
-    "mongoose": "4.13.6",
-    "prom-client": "10.2.2"
+    "ioredis": "^4.2.0",
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "prom-client": "^11.1.3"
   },
   "devDependencies": {
-    "jest": "21.2.1",
-    "nodemon": "1.12.0",
-    "standard": "10.0.3",
-    "supertest": "3.0.0"
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.5",
+    "supertest": "^3.3.0"
   }
 }

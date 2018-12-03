@@ -1,37 +1,38 @@
-/* global describe, test, expect, afterAll */
 const supertest = require('supertest')
-const server = require('../server/index')
+const app = require('../server/app')
 
 const basePath = '/api/v1/articles'
 
-describe('reading', () => {
+describe(basePath, () => {
   test('should create a article', async () => {
-    // curl -X POST -H 'Content-Type: application/json' -d '{"title":"myarticle","body":"ssss"}' https://appsample.ffaerber.com/api/v1/articles
-    const obj = { _id: 123456, title: 'myarticle', msg: "The test article's body" }
-    const res = await supertest(server).post(basePath).send(obj)
+    const params = {
+      id: '123456',
+      title: 'My Article',
+      msg: "The test article's body"
+    }
+    const res = await supertest(app.callback()).post(basePath).send(params)
     expect(res.status).toEqual(201)
-    expect(res.body.msg).toContain(obj.msg)
+    expect(res.body).toEqual(params)
   })
 
   test('should get a article', async () => {
-    const res = await supertest(server).get(`${basePath}/123456`)
+    const res = await supertest(app.callback()).get(`${basePath}/123456`)
     expect(res.status).toEqual(200)
     expect(res.body.msg).toEqual("The test article's body")
   })
 
   test('should update a article', async () => {
-    const obj = { title: 'myNewarticle', msg: "The new test article's body" }
-    const res = await supertest(server).put(`${basePath}/123456`).send(obj)
+    const original = await supertest(app.callback()).get(`${basePath}/123456`)
+    const newArticle = original.body
+    newArticle.msg = "The new test article's body"
+
+    const res = await supertest(app.callback()).put(`${basePath}/123456`).send(newArticle)
     expect(res.status).toEqual(200)
     expect(res.body.msg).toEqual("The new test article's body")
   })
 
   test('should remove a article', async () => {
-    const res = await supertest(server).del(`${basePath}/123456`)
+    const res = await supertest(app.callback()).del(`${basePath}/123456`)
     expect(res.status).toEqual(200)
-  })
-
-  afterAll(() => {
-    server.close()
   })
 })
