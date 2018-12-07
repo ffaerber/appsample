@@ -17,7 +17,7 @@ before_install:
   - docker-compose --version
   - sudo service docker stop
   - sudo apt-cache madison docker-ce
-  - sudo apt-get install docker-ce=18.06.1~ce-0~ubuntu
+  - sudo apt-get install docker-ce=17.11.0~ce-0~ubuntu
   - docker version
 
 script:
