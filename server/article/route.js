@@ -4,6 +4,7 @@ const router = new Router()
 const controller = require('./controller')
 const apiPath = `/api/v1/articles`
 
+router.get(`${apiPath}`, controller.index)
 router.get(`${apiPath}/:id`, controller.show)
 router.post(`${apiPath}`, controller.create)
 router.put(`${apiPath}/:id`, controller.update)
