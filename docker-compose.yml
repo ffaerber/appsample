@@ -9,12 +9,14 @@ services:
   #   # image: ffaerber/appsample
   #   build:
   #     context: .
+  #   command: node_modules/.bin/nodemon server/index.js
   #   ports:
   #     - "3000:3000"
   #   environment:
   #     REDIS_HOST: redis://redis-db
   #   volumes:
   #     - node_modules:/usr/src/app/node_modules
+  #     - ./:/usr/src/app
 
   test-app:
     build:

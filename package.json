@@ -11,10 +11,12 @@
   "author": "Felix Faerber",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.6.1",
     "ioredis": "^4.2.0",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-views": "6.1.5",
     "prom-client": "^11.1.3"
   },
   "devDependencies": {

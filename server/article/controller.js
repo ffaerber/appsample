@@ -5,8 +5,9 @@ const create = async ctx => {
 }
 
 const index = async ctx => {
-  const store = await ctx.redis.hgetall('articles')
-  ctx.body = store
+  const articles = await ctx.redis.hgetall('articles')
+  ctx.body = articles
+  ctx.status = 200
 }
 
 const show = async ctx => {
